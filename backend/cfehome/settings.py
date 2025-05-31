@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'drf_spectacular',
+
 
     # internal apps
     'api',
@@ -157,7 +159,9 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticatedOrReadOnly"
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
-    "PAGE_SIZE": 10
+    "PAGE_SIZE": 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+
 }
 
 # environment variables -> django-dotenv -> reads .env
@@ -172,4 +176,12 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ["Bearer"],
     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(seconds=30), # minutes=5
     "REFRESH_TOKEN_LIFETIME": datetime.timedelta(minutes=1), # days=1
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
